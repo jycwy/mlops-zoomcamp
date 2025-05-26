@@ -178,3 +178,5 @@ cython_debug/
 *mlflow.db
 *mlruns
 *models
+
+data/
