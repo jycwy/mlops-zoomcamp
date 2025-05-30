@@ -173,10 +173,18 @@ cython_debug/
 # PyPI configuration file
 .pypirc
 
+# big files
+*.parquet
+*.csv
+*.json
+*.zip
 
 # mlflow related files
-*mlflow.db
-*mlruns
-*models
+*mlflow.db*
+*mlruns*
+*models*
+
+# aws related
+*aws*
 
 data/
