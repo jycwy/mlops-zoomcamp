@@ -15,7 +15,7 @@ push: null
 # pull section allows you to provide instructions for cloning this project in remote locations
 pull:
 - prefect.deployments.steps.git_clone:
-    repository: https://github.com/jycwy/mlops-zoomcamp.git
+    repository: https://github.com/jycwy/mlops-zoomcamp/03-orchestration/example.git
     branch: main
 
 # the deployments section allows you to provide configuration for deploying flows
@@ -25,7 +25,7 @@ deployments:
   tags: []
   concurrency_limit: null
   description: The main training pipeline
-  entrypoint: 03-orchestration/example/orchestrate.py:main_flow
+  entrypoint: orchestrate.py:main_flow
   parameters: {}
   work_pool:
     name: test_work_pool
