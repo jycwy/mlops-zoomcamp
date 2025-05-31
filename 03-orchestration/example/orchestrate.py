@@ -108,7 +108,6 @@ def train_best_model(
         mlflow.xgboost.log_model(booster, artifact_path="models_mlflow")
     return None
 
-FileNotFoundError: [Errno 2] No such file or directory: '/tmp/tmpig6eafvuprefect/mlops-zoomcamp-main/orchestrate.py'
 @flow
 def main_flow(
     train_path: str = "https://d37ci6vzurychx.cloudfront.net/trip-data/green_tripdata_2021-01.parquet",
