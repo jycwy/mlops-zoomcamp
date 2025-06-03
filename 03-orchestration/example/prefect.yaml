@@ -18,7 +18,7 @@ pull:
     repository: https://github.com/jycwy/mlops-zoomcamp.git
     branch: main
 - prefect.deployments.steps.set_working_directory:
-    directory: 03-orchestration/example
+    directory: mlops-zoomcamp/03-orchestration/example
 
 # the deployments section allows you to provide configuration for deploying flows
 deployments:
