@@ -15,6 +15,7 @@ push: null
 # pull section allows you to provide instructions for cloning this project in remote locations
 pull:
 - prefect.deployments.steps.git_clone:
+    id: git-clone
     repository: https://github.com/jycwy/mlops-zoomcamp.git
     branch: main
 # (2) print out the cwd to see where Prefect is
@@ -22,8 +23,15 @@ pull:
 #     script: |
 #       echo "Current working directory:"
 #       pwd
+#     stream_output: true
 # - prefect.deployments.steps.set_working_directory:
-#     directory: 03-orchestration/example/
+#     directory: $REPO_DIR/03-orchestration/example/
+- prefect.deployments.steps.run_shell_script:
+  id: run-shell-script
+  script: /bin/bash -c "cd $REPO_DIR/03-orchestration/example"
+  env:
+    REPO_DIR: '{{ git-clone.directory }}'
+  expand_env_vars: true
 
 # the deployments section allows you to provide configuration for deploying flows
 deployments:
@@ -32,7 +40,7 @@ deployments:
   tags: []
   concurrency_limit: null
   description: The main training pipeline
-  entrypoint: 03-orchestration/example/orchestrate.py:main_flow
+  entrypoint: orchestrate.py:main_flow
   parameters: {}
   work_pool:
     name: test_work_pool
