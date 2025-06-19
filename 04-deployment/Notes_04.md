@@ -180,7 +180,7 @@ pipenv --rm
 
 removing pipfile.lock
 ```bash
-rm Pipfile.locl
+rm Pipfile.lock
 ```
 
 (but to keep the updated pipfile)
