@@ -15,3 +15,14 @@ datasources:
     jsonData:
       sslmode: 'disable'
       database: test
+  - name: PostgreSQL-Homework
+    type: postgres
+    access: proxy
+    url: db:5432
+    database: homework
+    user: postgres
+    secureJsonData:
+      password: 'example'
+    jsonData:
+      sslmode: 'disable'
+      database: homework
