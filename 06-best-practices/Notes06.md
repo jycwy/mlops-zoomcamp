@@ -33,7 +33,7 @@ command to start the integration test
 [PEP 8 – Style Guide for Python Code](https://peps.python.org/pep-0008/)
 
 1. pylint library
-  
+
   ```bash
   pylint --recursive=y .
   ```
@@ -48,7 +48,7 @@ command to start the integration test
   You can disable the warnings using .pylintrc or pyproject.toml (Modern Python project configuration file)
 
 2. black library
-   
+
     black take care of formatting
 
     Note: black and isort change of files, ensure you are commit before using it
@@ -77,4 +77,9 @@ command to start the integration test
 
 # 6.5 Git pre-commit hooks
 
-1. pre-commit 
+1. pre-commit
+
+install the pre-commit hooks. Then every time make a commit, the pre-commit hooks will be run automatically.
+```bash
+pre-commit install
+```
