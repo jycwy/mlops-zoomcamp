@@ -53,11 +53,28 @@ command to start the integration test
 
     Note: black and isort change of files, ensure you are commit before using it
 
+    ```bash
+    black .
+    ```
+
     or using below command, which only show the changes, but not do actual code changes
+
     ```bash
     black --diff . | less
     ```
 
 3. isort library
 
-   isort take care of input
+   isort take care of import
+
+   ```bash
+    isort --diff . | less
+    ```
+
+    ```bash
+    isort .
+    ```
+
+# 6.5 Git pre-commit hooks
+
+1. pre-commit 
