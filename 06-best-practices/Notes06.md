@@ -83,3 +83,11 @@ install the pre-commit hooks. Then every time make a commit, the pre-commit hook
 ```bash
 pre-commit install
 ```
+
+```bash
+pre-commit run
+```
+
+# 6.6 Makefiles and make
+
+Definition: A Makefile is a build automation tool that defines a set of tasks and their dependencies. Makefiles serve as a powerful tool to automate the processes of building, testing, and publishing in a project.
