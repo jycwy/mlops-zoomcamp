@@ -1,5 +1,7 @@
 # 6B.1 Terraform - Introduction
 
+![AWS stream pipeline](imgs/AWS-stream-pipeline.png)
+
 [Terraform overview](https://github.com/DataTalksClub/data-engineering-zoomcamp/blob/main/01-docker-terraform/1_terraform_gcp/1_terraform_overview.md)
 
 ![Terraform declations](imgs/terraform_declations.png)
