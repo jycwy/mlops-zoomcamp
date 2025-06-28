@@ -19,7 +19,7 @@ def dt(hour, minute, second=0):
     return datetime(2023, 1, 1, hour, minute, second)
 
 
-def test_integration():
+def create_test_data():
     # Create the same test dataframe as used in Q3 (unit test)
     data = [
         (None, None, dt(1, 1), dt(1, 10)),
@@ -64,5 +64,59 @@ def test_integration():
     print(f"DataFrame columns: {list(df_input.columns)}")
 
 
+def test_batch_prediction():
+    """
+    Test method that runs batch.py for January 2023 and verifies the predicted durations sum.
+    """
+    # First, create the test data
+    create_test_data()
+    
+    # Change to the parent directory to run batch.py
+    current_dir = os.getcwd()
+    batch_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    
+    # Run batch.py script for January 2023
+    batch_script_path = os.path.join(batch_dir, 'batch.py')
+    command = f"cd {batch_dir} && python {batch_script_path} 2023 1"
+    
+    print(f"Running command: {command}")
+    result = os.system(command)
+    
+    if result != 0:
+        raise Exception(f"batch.py script failed with return code: {result}")
+    
+    # Read the output data
+    output_file_path = get_output_path(2023, 1)
+    print(f"Output file path: {output_file_path}")
+    
+    # S3 configuration for LocalStack
+    S3_ENDPOINT_URL = os.getenv('S3_ENDPOINT_URL', 'http://localhost:4566')
+    
+    options = {
+        'client_kwargs': {
+            'endpoint_url': S3_ENDPOINT_URL
+        }
+    }
+    
+    # Read the prediction results
+    df_result = pd.read_parquet(output_file_path, storage_options=options)
+    
+    print(f"Result DataFrame shape: {df_result.shape}")
+    print(f"Result DataFrame columns: {list(df_result.columns)}")
+    print(f"Result DataFrame:\n{df_result}")
+    
+    # Calculate the sum of predicted durations
+    sum_predicted_duration = df_result['predicted_duration'].sum()
+    
+    print(f"Sum of predicted durations: {sum_predicted_duration}")
+    
+    return sum_predicted_duration
+
+
 if __name__ == "__main__":
-    test_integration()
+    # You can choose to run either create_test_data() or test_batch_prediction()
+    if len(sys.argv) > 1 and sys.argv[1] == 'test':
+        sum_duration = test_batch_prediction()
+        print(f"Final result - Sum of predicted durations: {sum_duration}")
+    else:
+        create_test_data()

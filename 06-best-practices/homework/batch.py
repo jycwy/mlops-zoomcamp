@@ -76,6 +76,9 @@ def main(year, month):
 
     print("predicted mean duration:", y_pred.mean())
 
+    total_predicted_duration = y_pred.sum()
+    print("total predicted duration:", total_predicted_duration)
+
     df_result = pd.DataFrame()
     df_result["ride_id"] = df["ride_id"]
     df_result["predicted_duration"] = y_pred
