@@ -10,6 +10,7 @@ pyarrow = "*"
 s3fs = "*"
 pytest = "*"
 deepdiff = "*"
+dotenv = "*"
 
 [dev-packages]
 
